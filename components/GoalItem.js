@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const GoalItem = props => {
+    // bind is used below to pass the id argument into the function passed to onDelete
     return (
-    <View style={styles.listItem}>
-        <Text>{props.title}</Text>
-    </View>);
+    <TouchableOpacity activeOpacity={0.75} onPress={props.onDelete.bind(this,props.id)}>
+        <View style={styles.listItem}>
+            <Text>{props.title}</Text>
+        </View>
+    </TouchableOpacity>);
 }
 
 const styles = StyleSheet.create({
