@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, Button} from 'react-native';
 
 const GoalInput = props => {
+    const [enteredGoal, setEnteredGoal] = useState('');
+
+  // equivalent to:
+  // function goalInputHandler(enteredText) {
+  const goalInputHandler = (enteredText) => {
+    setEnteredGoal(enteredText);
+  }
+
+    // the anonymous function notation is required on Button because
+    // we need to define a parameter *and* ensure the function
+    // isn't executed on render
     return (
         <View style={styles.inputContainer}>
         <TextInput placeholder="Course Goal" 
                    style={styles.input} 
-                   onChangeText={props.onChangeText}
-                   value={props.value}/>
-        <Button title="Add" onPress={props.onPress}/>
+                   onChangeText={goalInputHandler}
+                   value={enteredGoal}/>
+        <Button title="Add" onPress={() => props.onAddGoal(enteredGoal)}/>
       </View>
     );
 }
